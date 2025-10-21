@@ -35,6 +35,14 @@ class CombinedDataset(ConcatDataset):
         print(f"- Rejects: {total_rejects}")
         print(f"- Total samples: {len(self)}")
         
+    def get_sample_info(self, idx):
+        if idx < 0:
+            idx += len(self)
+        if idx < self.real_size:
+            return self.real_dataset.get_sample_info(idx)
+        else:
+            return self.simulated_dataset.get_sample_info(idx - self.real_size)
+
     @property
     def real_size(self):
         return len(self.real_dataset)
@@ -210,6 +218,14 @@ class SpecimenSpecificDataset(Dataset):
             target_img = target_img.astype(np.float32) / 255.0
             
         return target_img, drr_img
+    
+    def get_sample_info(self, idx):
+        sample = self.samples[idx]
+        return {
+            'spec_id': self.spec_id,
+            'proj_idx': int(sample['proj_idx']),
+            'sample_id': int(sample['sample_id']),
+        }
 
     def __len__(self):
         return len(self.samples)
