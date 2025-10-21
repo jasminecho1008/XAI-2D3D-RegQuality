@@ -36,16 +36,28 @@ conda env update -f environment.yml
 
 ### Python Script
 
+To run hyperparameter optimization: 
+
+```bash
+bash optuna_hpo.sh 
+```
+
 To train model: 
 
 ```bash
 bash train.sh 
 ```
 
-To run hyperparameter optimization: 
+To evaluate model:
 
 ```bash
-bash optuna_hpo.sh 
+bash inference.sh 
+```
+
+To generate Grad-CAM heatmaps:
+
+```bash
+bash gradcam.sh 
 ```
 
 ## Citation
