@@ -1,0 +1,83 @@
+# Data configurations for different experiment types
+data_configs:
+  # Specimen-specific experiment configuration (single specimen)
+  specimen_specific:
+    experiment_mode: "specimen_specific"
+    data_root_real: "path_to_dataset"
+    label_csv_real: "name_of_label_csv" 
+    data_root_simulated: "path_to_dataset"
+    label_csv_simulated: "name_of_label_csv"
+    image_side_size: 448
+    spec_id: "17-1882"
+
+  # LOSO and k-fold configuration:
+  loso_kfold:
+    experiment_mode: "loso_kfold"
+    data_root_real: "path_to_dataset"
+    label_csv_real: "name_of_label_csv"
+    data_root_simulated: "path_to_dataset"
+    label_csv_simulated: "name_of_label_csv"
+    image_side_size: 448
+    folds:
+      fold1:
+        train_ids: ["17-1882", "18-0725", "18-1109"]
+        val_ids: ["18-2799"]
+        test_ids: ["18-2800"]
+        augmentation_factor: 1
+      fold2:
+        train_ids: ["17-1882", "18-0725", "18-2800"]
+        val_ids: ["18-1109"]
+        test_ids: ["18-2799"]
+        augmentation_factor: 1
+      fold3:
+        train_ids: ["17-1882", "18-2799", "18-2800"]
+        val_ids: ["18-0725"]
+        test_ids: ["18-1109"]
+        augmentation_factor: 1
+      fold4:
+        train_ids: ["18-1109", "18-2799", "18-2800"]
+        val_ids: ["17-1882"]
+        test_ids: ["18-0725"]
+        augmentation_factor: 2
+      fold5:
+        train_ids: ["18-0725", "18-1109", "18-2799"]
+        val_ids: ["18-2800"]
+        test_ids: ["17-1882"]
+        augmentation_factor: 2
+
+# Model configurations
+model:
+  CNNCatCross:
+    encoder_arch: “CustomCNN” # Name of the encoder architecture
+    in_channels: 1
+    hidden_channels: 32 # Ensure this is even since it will be split in half
+    num_layers: 4
+    output_dim: 1
+    image_size: 448 # Must match data.image_side_size 
+    attention_heads: 4 
+
+# Training hyperparameters
+training:
+  lr: 0.0002
+  wd: 0.00005
+  batch_size: 16
+  num_epochs: 20
+  optimizer: “Adam”
+  loss_function: “BCEWithLogitsLoss”
+  patience: 5
+
+# Checkpoint settings
+checkpoint:
+  dir: "path_to_save_checkpoints"
+  save_best_only: true
+
+# Hyperparameter optimization (HPO) settings
+hpo:
+  use_hpo: false # Set to true to enable hyperparameter optimization
+  n_trials: 20 # Number of trials for HPO
+  epochs_short: 3 # Number of epochs per trial (for fast tuning)
+
+# Output directories for saving model and loss curves
+output:
+  model_dir: "path_to_save_model_weights"
+  loss_dir: "path_to_save_loss_curves"
