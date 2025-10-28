@@ -1,8 +1,10 @@
 # XAI-2D3D-RegQuality
 Explainable AI for Collaborative Assessment of 2D/3D Registration Quality
-<br>
-<a href="https://huggingface.co/datasets/suemincho/2D3D-RegQuality/"><img src="https://img.shields.io/badge/Data-HuggingFace-yellow.svg" alt="Download"></a>
-<br>
+<div style="text-align:center;">
+  <a href="https://huggingface.co/datasets/suemincho/2D3D-RegQuality/">
+    <img src="https://img.shields.io/badge/Data-HuggingFace-yellow.svg" alt="Download">
+  </a>
+</div>
 
 <div align="center">
   <img src="figures/model.png" alt="Model architecture." width="800">
