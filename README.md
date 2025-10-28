@@ -2,7 +2,7 @@
 XAI-2D3D-RegQuality
   <br>
     <a href="https://huggingface.co/datasets/suemincho/2D3D-RegQuality/">
-<img src="https://img.shields.io/badge/Model-GitHub-blue.svg" alt="Model"></a>
+<img src="https://img.shields.io/badge/Data-HuggingFace-yellow.svg" alt="Download"></a>
   <br>
   <img src="figures/model.png" alt="Model architecture." width="800">
   <br>
