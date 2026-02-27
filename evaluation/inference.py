@@ -281,7 +281,7 @@ def main():
     logging.info(f'Results saved to {csv_filename}')
     
     # Compute metrics
-    metrics = metrics(test_labels, predictions)
+    results = metrics(test_labels, predictions)
     
     # Compute coverage and efficiency 
     coverage = sum(
@@ -292,7 +292,7 @@ def main():
 
     # Compute AUC
     auc_score = roc_auc_score(test_labels, probabilities)
-    metrics['auc'] = auc_score
+    results['auc'] = auc_score
     
     # Log results
     logging.info(f'Conformal Prediction Results for Fold {args.fold}:')
@@ -301,15 +301,15 @@ def main():
     logging.info(f'Coverage: {coverage:.4f}')
     logging.info(f'Efficiency: {efficiency:.4f}')
     logging.info(f'Classification Metrics:')
-    logging.info(f'True Positives: {metrics["true_positives"]}')
-    logging.info(f'False Positives: {metrics["false_positives"]}')
-    logging.info(f'True Negatives: {metrics["true_negatives"]}')
-    logging.info(f'False Negatives: {metrics["false_negatives"]}')
-    logging.info(f'Accuracy: {metrics["accuracy"]:.4f}')
-    logging.info(f'Precision: {metrics["precision"]:.4f}')
-    logging.info(f'Recall: {metrics["recall"]:.4f}')
-    logging.info(f'F1 Score: {metrics["f1_score"]:.4f}')
-    logging.info(f'AUC Score: {metrics["auc"]:.4f}')
+    logging.info(f'True Positives: {results["true_positives"]}')
+    logging.info(f'False Positives: {results["false_positives"]}')
+    logging.info(f'True Negatives: {results["true_negatives"]}')
+    logging.info(f'False Negatives: {results["false_negatives"]}')
+    logging.info(f'Accuracy: {results["accuracy"]:.4f}')
+    logging.info(f'Precision: {results["precision"]:.4f}')
+    logging.info(f'Recall: {results["recall"]:.4f}')
+    logging.info(f'F1 Score: {results["f1_score"]:.4f}')
+    logging.info(f'AUC Score: {results["auc"]:.4f}')
 
 if __name__ == '__main__':
     main()
